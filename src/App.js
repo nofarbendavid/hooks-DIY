@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {NUMBER_FACT_MAP} from "./utils";
+import {useState} from "./index";
 import './App.css';
 
 const App = () => {
