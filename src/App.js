@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {NUMBER_FACT_MAP} from "./utils";
 import './App.css';
 
 const App = () => {
   const [count, setCount] = useState(0);
   const [funFact, setFunFact] = useState();
+
+
+  useEffect(() => {
+    document.title = `${count} clicks`;
+  }, [count]);
 
   const handleClick = () => {
     setCount(count + 1);
@@ -26,7 +31,13 @@ const App = () => {
 
         </div>
       </header>
-        {funFact && <h4 className="fact-container">Did you know that {count} {funFact}</h4>}
+        {
+          funFact &&
+        <div>
+          <h4 className="fact-container">Did you know that {count} {funFact}</h4>
+          <button onClick={() => {setFunFact(null)}}>Clear</button>
+        </div>
+        }
     </div>
   );
 };
