@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+.idea
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+
 # testing
 /coverage
 
