@@ -1,21 +1,26 @@
-import React, {useEffect} from 'react';
-import {NUMBER_FACT_MAP} from "./utils";
-import {useState} from "./index";
-import './App.css';
+import React, { useEffect } from "react";
+import { NUMBER_FACT_MAP } from "./utils";
+import { useState } from "./index";
+import "./App.css";
 
 const App = () => {
   const [count, setCount] = useState(0);
   const [funFact, setFunFact] = useState();
 
-
   useEffect(() => {
+    console.log("inside effect");
     document.title = `${count} clicks`;
+    return () => {
+      console.log(" before cleanup", document.title);
+      document.title = "original title";
+      console.log("after cleanup", document.title);
+    };
   }, [count]);
 
   const handleClick = () => {
     setCount(count + 1);
-    setFunFact(NUMBER_FACT_MAP[count+1]);
-  }
+    setFunFact(NUMBER_FACT_MAP[count + 1]);
+  };
 
   return (
     <div className="App">
@@ -25,20 +30,30 @@ const App = () => {
 
           <button onClick={() => handleClick()}>Click me</button>
 
-          <button onClick={() => {
-            setCount(0);
-            setFunFact(null);
-          }}>Reset</button>
-
+          <button
+            onClick={() => {
+              setCount(0);
+              setFunFact(null);
+            }}
+          >
+            Reset
+          </button>
         </div>
       </header>
-        {
-          funFact &&
+      {funFact && (
         <div>
-          <h4 className="fact-container">Did you know that {count} {funFact}</h4>
-          <button onClick={() => {setFunFact(null)}}>Clear</button>
+          <h4 className="fact-container">
+            Did you know that {count} {funFact}
+          </h4>
+          <button
+            onClick={() => {
+              setFunFact(null);
+            }}
+          >
+            Clear
+          </button>
         </div>
-        }
+      )}
     </div>
   );
 };

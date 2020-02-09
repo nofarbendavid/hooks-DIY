@@ -151,6 +151,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
@@ -229,6 +230,20 @@
     <MESSAGE value="remove unused files" />
     <MESSAGE value="remove unused test file" />
     <option name="LAST_COMMIT_MESSAGE" value="remove unused test file" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="3460" y="-57" width="1720" height="853" key="DiffContextDialog" timestamp="1581272052884">
+      <screen x="3360" y="-157" width="1920" height="1057" />
+    </state>
+    <state x="3460" y="-57" width="1720" height="853" key="DiffContextDialog/0.23.1440.877/1440.-157.1920.1053/3360.-157.1920.1057@3360.-157.1920.1057" timestamp="1581272052884" />
+    <state x="4107" y="110" key="VcsDiffUtil.ChangesDialog" timestamp="1581272045527">
+      <screen x="3360" y="-157" width="1920" height="1057" />
+    </state>
+    <state x="4107" y="110" key="VcsDiffUtil.ChangesDialog/0.23.1440.877/1440.-157.1920.1053/3360.-157.1920.1057@3360.-157.1920.1057" timestamp="1581272045527" />
+    <state x="3985" y="77" width="670" height="676" key="search.everywhere.popup" timestamp="1581271926915">
+      <screen x="3360" y="-157" width="1920" height="1057" />
+    </state>
+    <state x="3985" y="77" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/1440.-157.1920.1053/3360.-157.1920.1057@3360.-157.1920.1057" timestamp="1581271926915" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/index.css">
