@@ -1,7 +1,7 @@
-import React         from "react";
-import ReactDOM      from "react-dom";
-import {isUndefined} from "lodash";
-import App           from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
+import { isUndefined } from "lodash";
+import App from "./App";
 import "./index.css";
 
 const STATE = [];
@@ -32,13 +32,15 @@ export const useEffect = (callback, dependenciesArray) => {
   const index = ++currentDependenciesPointer;
 
   const prevDependencies = DEPENDENCIES[index];
+
   const isSimilar =
     prevDependencies &&
-    prevDependencies.every((item, index) => Object.is(item, dependenciesArray[index]));
+    prevDependencies.dependencies.every((item, index) => Object.is(item, dependenciesArray[index]));
 
   if (isUndefined(dependenciesArray) || !isSimilar) {
-    DEPENDENCIES[index] = dependenciesArray;
-    callback();
+    prevDependencies && prevDependencies.cleanUp();
+    const cleanUpEffect = callback();
+    DEPENDENCIES[index]= { dependencies: dependenciesArray, cleanUp: cleanUpEffect };
   }
 };
 
