@@ -4,34 +4,31 @@ import { isUndefined } from "lodash";
 import App from "./App";
 import "./index.css";
 
-const STATE = [];
-let currentStatePointer = -1;
-
-const DEPENDENCIES = [];
-let currentDependenciesPointer = -1;
+const HOOKS = [];
+let currentPointer = -1;
 
 export const useState = initialState => {
-  const index = ++currentStatePointer;
+  const index = ++currentPointer;
 
-  if (STATE[index]) {
-    return STATE[index];
+  if (HOOKS[index]) {
+    return HOOKS[index];
   }
 
   const setState = newState => {
-    STATE[index][0] = newState;
+    HOOKS[index][0] = newState;
     customRender();
   };
 
   const nextState = [initialState, setState];
-  STATE[index] = nextState;
+  HOOKS[index] = nextState;
 
   return nextState;
 };
 
 export const useEffect = (callback, dependenciesArray) => {
-  const index = ++currentDependenciesPointer;
+  const index = ++currentPointer;
 
-  const prevDependencies = DEPENDENCIES[index];
+  const prevDependencies = HOOKS[index];
 
   const isSimilar =
     prevDependencies &&
@@ -42,7 +39,7 @@ export const useEffect = (callback, dependenciesArray) => {
   if (isUndefined(dependenciesArray) || !isSimilar) {
     prevDependencies && prevDependencies.cleanUp();
     const cleanUpEffect = callback();
-    DEPENDENCIES[index] = {
+    HOOKS[index] = {
       dependencies: dependenciesArray,
       cleanUp: cleanUpEffect
     };
@@ -50,20 +47,17 @@ export const useEffect = (callback, dependenciesArray) => {
 };
 
 export const customRender = () => {
-  currentStatePointer = -1;
-  currentDependenciesPointer = -1;
+  currentPointer = -1;
   ReactDOM.render(<App />, document.getElementById("root"));
 };
 
 customRender();
 
 export const customUnmount = () => {
-  DEPENDENCIES.forEach(({ cleanUp }) => cleanUp && cleanUp());
+  HOOKS.forEach(({ cleanUp }) => cleanUp && cleanUp());
 
-  DEPENDENCIES.length = 0;
-  STATE.length = 0;
-  currentStatePointer = -1;
-  currentDependenciesPointer = -1;
+  HOOKS.length = 0;
+  currentPointer = -1;
 
   document.getElementById("root").innerHTML = "";
 };
