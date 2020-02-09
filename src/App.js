@@ -4,7 +4,7 @@ import "./App.css";
 
 const App = () => {
   const [count, setCount] = useState(0);
-  const [funFact, setFunFact] = useState();
+  const [funFact, setFunFact] = useState(null);
 
   useEffect(() => {
     console.log("inside effect");
@@ -53,6 +53,7 @@ const App = () => {
           </button>
         </div>
       )}
+      {/*<button id="unmount-btn" onClick={()=> console.log("Unmount was clicked")}>Unmount</button>*/}
     </div>
   );
 };
