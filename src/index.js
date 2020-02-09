@@ -35,12 +35,17 @@ export const useEffect = (callback, dependenciesArray) => {
 
   const isSimilar =
     prevDependencies &&
-    prevDependencies.dependencies.every((item, index) => Object.is(item, dependenciesArray[index]));
+    prevDependencies.dependencies.every((item, index) =>
+      Object.is(item, dependenciesArray[index])
+    );
 
   if (isUndefined(dependenciesArray) || !isSimilar) {
     prevDependencies && prevDependencies.cleanUp();
     const cleanUpEffect = callback();
-    DEPENDENCIES[index]= { dependencies: dependenciesArray, cleanUp: cleanUpEffect };
+    DEPENDENCIES[index] = {
+      dependencies: dependenciesArray,
+      cleanUp: cleanUpEffect
+    };
   }
 };
 
@@ -51,3 +56,14 @@ export const customRender = () => {
 };
 
 customRender();
+
+export const customUnmount = () => {
+  DEPENDENCIES.forEach(({ cleanUp }) => cleanUp && cleanUp());
+
+  DEPENDENCIES.length = 0;
+  STATE.length = 0;
+  currentStatePointer = -1;
+  currentDependenciesPointer = -1;
+
+  document.getElementById("root").innerHTML = "";
+};
