@@ -1,6 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "./index";
-import { NUMBER_FACT_MAP } from "./utils";
+import React                 from "react";
+import {useEffect, useState} from "./index";
+import { NUMBER_FACT_MAP }   from "./utils";
 import "./App.css";
 
 const App = () => {

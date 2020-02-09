@@ -1,7 +1,7 @@
-import React from "react";
-import { isUndefined } from "lodash";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React         from "react";
+import ReactDOM      from "react-dom";
+import {isUndefined} from "lodash";
+import App           from "./App";
 import "./index.css";
 
 const STATE = [];
@@ -34,11 +34,11 @@ export const useEffect = (callback, dependenciesArray) => {
   const prevDependencies = DEPENDENCIES[index];
   const isSimilar =
     prevDependencies &&
-    prevDependencies.every((dep, index) => dep === dependenciesArray[index]);
+    prevDependencies.every((item, index) => Object.is(item, dependenciesArray[index]));
 
   if (isUndefined(dependenciesArray) || !isSimilar) {
-    callback();
     DEPENDENCIES[index] = dependenciesArray;
+    callback();
   }
 };
 
