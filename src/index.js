@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { isUndefined } from "lodash";
+import { isUndefined, noop } from "lodash";
 import App from "./App";
 import "./index.css";
 
@@ -38,7 +38,7 @@ export const useEffect = (callback, dependenciesArray) => {
 
   if (isUndefined(dependenciesArray) || !isSimilar) {
     prevDependencies && prevDependencies.cleanUp();
-    const cleanUpEffect = callback();
+    const cleanUpEffect = callback() || noop();
     HOOKS[index] = {
       dependencies: dependenciesArray,
       cleanUp: cleanUpEffect
@@ -54,7 +54,7 @@ export const customRender = () => {
 customRender();
 
 export const customUnmount = () => {
-  HOOKS.forEach(({ cleanUp }) => cleanUp && cleanUp());
+  HOOKS.forEach(({ cleanUp }) => cleanUp());
 
   HOOKS.length = 0;
   currentPointer = -1;
