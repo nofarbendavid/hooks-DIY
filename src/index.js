@@ -54,7 +54,7 @@ export const customRender = () => {
 customRender();
 
 export const customUnmount = () => {
-  HOOKS.forEach(({ cleanUp }) => cleanUp());
+  HOOKS.forEach(({ cleanUp }) => cleanUp && cleanUp());
 
   HOOKS.length = 0;
   currentPointer = -1;
